@@ -18,8 +18,47 @@ function isString(name) {
 
 function generateActionName(name) {
     name = capital(name);
-    return name.match(/([A-Z]{1}[a-z]+)/g).map(item=>item.toUpperCase()).join('-');
+    return name.match(/([A-Z]{1}[a-z]+)/g).map(item => item.toUpperCase()).join('_');
 }
 
+exports.generateActionName = generateActionName;
 
-console.log(generateActionName('getNameById'));
+
+exports.generateActionItem = (name, params) => {
+    let arr = [`type: ACTIONS.${name}`].concat(params.map(item => `    ${item}`));
+    return `  ${name}: (${params.join(', ')}) => ({
+    ${arr.join(',\n')}
+  })`
+};
+
+exports.generateActionCreator = (params) => {
+    return `export const ACTIONS = {
+${params.join(',\n')}
+};
+`
+};
+exports.generateReducerItem = (ACTION, params) => {
+    return `    case ACTIONS.${ACTION}:${params.length ? `\n      const {${params.join(', ')}} = action;` : ''}
+      return produce(state, draftState => {
+        // todo
+      });`
+};
+
+exports.generateReducer = (reducers) => {
+    return `export const reducer = (state = []/*todo*/, action) =>{
+  const {type} = action;
+  switch (type) {
+    ${reducers.join('\n')}
+    default:
+      return state;
+  }
+};`
+};
+
+exports.generateOutput = (params) => {
+    return `export const dispatchers = {
+${params.join(',\n')}
+};
+`
+};
+// console.log(generateActionName('getNameById'));

@@ -1,8 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+
+
+const util = require('./util.js');
+
 const config = {
     defaultInput: path.join(__dirname, '..', '.redux', 'actions.json'),
-    defaultOutput: '',
+    defaultOutput: path.join(__dirname, '..', '.redux', 'output.js'),
 
 };
 
@@ -24,8 +28,28 @@ if (!fs.existsSync(reduxFolder)) {
 
 const configFile = require(config.defaultInput);
 
-for (let key in configFile) {
 
+let actionNames = [];
+let actionArray = [];
+let reducerArray = [];
+
+
+for (let key in configFile) {
+    let ACTION = util.generateActionName(key);
+    let params = configFile[key];
+    actionNames.push(ACTION);
+    actionArray.push(util.generateActionItem(key, params));
+    reducerArray.push(util.generateReducerItem(ACTION, params))
 }
 
 
+let fileContent = `import produce from "immer"
+${util.generateActionCreator(actionNames.map(item => `  ${item}:'${item}'`))}
+
+${util.generateReducer(reducerArray)}
+
+${util.generateOutput(actionArray)}
+`;
+
+
+fs.writeFileSync(config.defaultOutput, fileContent);
