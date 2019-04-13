@@ -18,7 +18,7 @@ function isString(name) {
 
 function generateActionName(name) {
     name = capital(name);
-    return name.match(/([A-Z]{1}[a-z]+)/g).map(item => item.toUpperCase()).join('_');
+    return name.match(/([A-Z][a-z]+)/g).map(item => item.toUpperCase()).join('_');
 }
 
 exports.generateActionName = generateActionName;
@@ -34,8 +34,7 @@ exports.generateActionItem = (name, params) => {
 exports.generateActionCreator = (params) => {
     return `export const ACTIONS = {
 ${params.join(',\n')}
-};
-`
+};`
 };
 exports.generateReducerItem = (ACTION, params) => {
     return `    case ACTIONS.${ACTION}:${params.length ? `\n      const {${params.join(', ')}} = action;` : ''}
@@ -58,7 +57,5 @@ exports.generateReducer = (reducers) => {
 exports.generateOutput = (params) => {
     return `export const dispatchers = {
 ${params.join(',\n')}
+};`
 };
-`
-};
-// console.log(generateActionName('getNameById'));

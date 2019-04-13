@@ -7,7 +7,7 @@ const util = require('./util.js');
 const config = {
     defaultInput: path.join(__dirname, '..', '.redux', 'actions.json'),
     defaultOutput: path.join(__dirname, '..', '.redux', 'output.js'),
-
+    actionPrefix:'REDUX-CLI@'
 };
 
 
@@ -44,11 +44,20 @@ for (let key in configFile) {
 
 
 let fileContent = `import produce from "immer"
-${util.generateActionCreator(actionNames.map(item => `  ${item}:'${item}'`))}
 
+/***************************************ACTIONS start******************************************************************/
+${util.generateActionCreator(actionNames.map(item => `  ${item}: '${config.actionPrefix}${item}'`))}
+/***************************************ACTIONS end  ******************************************************************/
+
+
+/***************************************reducer start******************************************************************/
 ${util.generateReducer(reducerArray)}
+/***************************************reducer end********************************************************************/
 
+
+/***************************************dispatcher start***************************************************************/
 ${util.generateOutput(actionArray)}
+/***************************************dispatcher end*****************************************************************/
 `;
 
 
