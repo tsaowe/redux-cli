@@ -44,10 +44,10 @@ exports.generateReducerItem = (ACTION, params) => {
 };
 
 exports.generateReducer = (reducers) => {
-    return `export const reducer = (state = []/*todo*/, action) =>{
+    return `export const reducer = (state = []/*todo*/, action) => {
   const {type} = action;
   switch (type) {
-    ${reducers.join('\n')}
+${reducers.join('\n')}
     default:
       return state;
   }
