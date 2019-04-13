@@ -24,7 +24,7 @@ if (!fs.existsSync(reduxFolder)) {
 
 const configFile = require(config.defaultInput);
 
-for (let key in configFile){
+for (let key in configFile) {
 
 }
 
