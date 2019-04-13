@@ -1,0 +1,11 @@
+{
+  "name": "redux-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tsaowe/redux-cli.git",
+  "author": "tsaowe@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "immer": "^2.1.5"
+  }
+}

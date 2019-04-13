@@ -2,3 +2,5 @@
 .redux
 .vscode
 test.js
+yarn.lock
+node_modules

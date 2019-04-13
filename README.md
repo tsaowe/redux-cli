@@ -1,11 +1,10 @@
-#### This repo aim to improve your dev experience by auto generate redux 
+# This repo aim to speed up your dev by auto generate three basic redux components 
 - ACTIONS 
 - REDUCER 
 - DISPATCHER
 
 
 ### HOW TO USE
-
 - git clone git@github.com:tsaowe/redux-cli.git
 - cd redux-cli
 - mkdir .redux
@@ -83,3 +82,9 @@ export const dispatchers = {
 /***************************************dispatcher end*****************************************************************/
 
 ```
+
+
+I use [immer](https://github.com/mweststrate/immer) as my immutable state tool, but you can use your own immutable~ enjoy
+
+
+Any feature or suggestion please [submit an issue](https://github.com/tsaowe/redux-cli/issues) 
