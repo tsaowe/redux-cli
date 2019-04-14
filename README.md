@@ -39,10 +39,10 @@ export const ACTIONS = {
 
 
 /***************************************reducer start******************************************************************/
-export const reducer = (state = []/*todo*/, action) =>{
+export const reducer = (state = []/*todo*/, action) => {
   const {type} = action;
   switch (type) {
-        case ACTIONS.SET_FILE_STATUS:
+    case ACTIONS.SET_FILE_STATUS:
       const {filePath, mode} = action;
       return produce(state, draftState => {
         // todo
@@ -65,22 +65,21 @@ export const reducer = (state = []/*todo*/, action) =>{
 
 /***************************************dispatcher start***************************************************************/
 export const dispatchers = {
-  setFileStatus: (filePath, mode) => ({
-    type: ACTIONS.setFileStatus,
+  SET_FILE_STATUS: (filePath, mode) => ({
+    type: ACTIONS.SET_FILE_STATUS,
     filePath,
     mode
   }),
-  setActiveIndex: (index, parent) => ({
-    type: ACTIONS.setActiveIndex,
+  SET_ACTIVE_INDEX: (index, parent) => ({
+    type: ACTIONS.SET_ACTIVE_INDEX,
     index,
     parent
   }),
-  openWindow: () => ({
-    type: ACTIONS.openWindow
+  OPEN_WINDOW: () => ({
+    type: ACTIONS.OPEN_WINDOW
   })
 };
 /***************************************dispatcher end*****************************************************************/
-
 ```
 
 
