@@ -25,7 +25,7 @@ exports.generateActionName = generateActionName;
 
 
 exports.generateActionItem = (name, params) => {
-    let arr = [`type: ACTIONS.${name}`].concat(params.map(item => `    ${item}`));
+    let arr = [`type: ACTIONS.${generateActionName(name)}`].concat(params.map(item => `    ${item}`));
     return `  ${name}: (${params.join(', ')}) => ({
     ${arr.join(',\n')}
   })`

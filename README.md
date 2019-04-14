@@ -65,21 +65,22 @@ export const reducer = (state = []/*todo*/, action) => {
 
 /***************************************dispatcher start***************************************************************/
 export const dispatchers = {
-  SET_FILE_STATUS: (filePath, mode) => ({
+  setFileStatus: (filePath, mode) => ({
     type: ACTIONS.SET_FILE_STATUS,
     filePath,
     mode
   }),
-  SET_ACTIVE_INDEX: (index, parent) => ({
+  setActiveIndex: (index, parent) => ({
     type: ACTIONS.SET_ACTIVE_INDEX,
     index,
     parent
   }),
-  OPEN_WINDOW: () => ({
+  openWindow: () => ({
     type: ACTIONS.OPEN_WINDOW
   })
 };
 /***************************************dispatcher end*****************************************************************/
+
 ```
 
 

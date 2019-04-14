@@ -38,7 +38,7 @@ for (let key in configFile) {
     let ACTION = util.generateActionName(key);
     let params = configFile[key];
     actionNames.push(ACTION);
-    actionArray.push(util.generateActionItem(ACTION, params));
+    actionArray.push(util.generateActionItem(key, params));
     reducerArray.push(util.generateReducerItem(ACTION, params))
 }
 
