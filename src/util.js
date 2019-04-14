@@ -1,3 +1,7 @@
+let actionName = null;
+
+exports.setActionName = action => actionName = action;
+
 function capital(name) {
     if (isString(name)) {
         if (name.length > 0) {
@@ -25,19 +29,19 @@ exports.generateActionName = generateActionName;
 
 
 exports.generateActionItem = (name, params) => {
-    let arr = [`type: ACTIONS.${generateActionName(name)}`].concat(params.map(item => `    ${item}`));
+    let arr = [`type: ${actionName}.${generateActionName(name)}`].concat(params.map(item => `    ${item}`));
     return `  ${name}: (${params.join(', ')}) => ({
     ${arr.join(',\n')}
   })`
 };
 
 exports.generateActionCreator = (params) => {
-    return `export const ACTIONS = {
+    return `export const ${actionName} = {
 ${params.join(',\n')}
 };`
 };
 exports.generateReducerItem = (ACTION, params) => {
-    return `    case ACTIONS.${ACTION}:${params.length ? `\n      const {${params.join(', ')}} = action;` : ''}
+    return `    case ${actionName}.${ACTION}:${params.length ? `\n      const {${params.join(', ')}} = action;` : ''}
       return produce(state, draftState => {
         // todo
       });`
